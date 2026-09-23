@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Dutch Creek Brewing — good beer, small batches, no problems.">
+
+    <title>Dutch Creek Brewing</title>
+
+    <link rel="stylesheet" href="css/dutchcreek.css">
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     SITE HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a class="brand"
+           href="#"
+           data-panel="home">
+
+            <div class="brand-mark">
+                🌾
+            </div>
+
+            <div class="brand-copy">
+
+                <span class="brand-name">
+                    Dutch Creek Brewing
+                </span>
+
+                <span class="brand-tagline">
+                    Brewed in some guy's basement since 2023.
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <button class="nav-toggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+            ☰
+        </button>
+
+
+        <nav class="site-nav"
+             aria-label="Main navigation">
+
+            <a href="#"
+               class="nav-link active"
+               data-panel="home">
+                Home
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               data-panel="on-tap">
+                On Tap
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               data-panel="recipes">
+                Recipes
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               data-panel="brewing">
+                Brewing
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               data-panel="brewing-tools">
+                Brewing Tools
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               data-panel="our-story">
+                Our Story
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               data-panel="shop">
+                Shop
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     PERSISTENT HERO
+     ========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-inner">
+
+        <div class="hero-copy">
+
+            <p class="eyebrow">
+                Zelienople, Pennsylvania
+            </p>
+
+            <h1>
+                Good Beer.<br>
+                Small Batches.<br>
+                No Problems.
+            </h1>
+
+            <p class="hero-description">
+                Dutch Creek Brewing is a basement home brewery
+                dedicated to brewing good beer, experimenting
+                with recipes and sharing what we learn along
+                the way.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <button class="button button-primary"
+                        type="button"
+                        data-panel="on-tap">
+                    What's On Tap
+                    <span aria-hidden="true">→</span>
+                </button>
+
+                <button class="button button-secondary"
+                        type="button"
+                        data-panel="brewing-tools">
+                    Brewing Tools
+                    <span aria-hidden="true">→</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DYNAMIC CONTENT AREA
+     ========================================================= -->
+
+<section class="content-area"
+         id="content-area">
+
+
+    <!-- HOME PANEL -->
+
+    <div class="content-panel active"
+         id="panel-home">
+
+        <div class="content-heading">
+
+            <div>
+                <p class="eyebrow">
+                    Welcome to the basement
+                </p>
+
+                <h2>
+                    Pull up a stool.
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="home-grid">
+
+            <button class="feature-card"
+                    type="button"
+                    data-panel="on-tap">
+
+                <span class="feature-number">
+                    01
+                </span>
+
+                <div>
+                    <span class="feature-label">
+                        From the Basement
+                    </span>
+
+                    <h3>
+                        What's On Tap
+                    </h3>
+
+                    <p>
+                        See what's currently pouring
+                        from the Dutch Creek keezer.
+                    </p>
+                </div>
+
+            </button>
+
+
+            <button class="feature-card"
+                    type="button"
+                    data-panel="brewing-tools">
+
+                <span class="feature-number">
+                    02
+                </span>
+
+                <div>
+                    <span class="feature-label">
+                        Useful Stuff
+                    </span>
+
+                    <h3>
+                        Brewing Tools
+                    </h3>
+
+                    <p>
+                        Calculators and utilities
+                        built for brew day.
+                    </p>
+                </div>
+
+            </button>
+
+
+            <button class="feature-card"
+                    type="button"
+                    data-panel="brewing">
+
+                <span class="feature-number">
+                    03
+                </span>
+
+                <div>
+                    <span class="feature-label">
+                        Brew House
+                    </span>
+
+                    <h3>
+                        Brewing
+                    </h3>
+
+                    <p>
+                        Recipes, experiments,
+                        successes and questionable decisions.
+                    </p>
+                </div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ON TAP PANEL -->
+
+    <div class="content-panel"
+         id="panel-on-tap">
+
+        <div class="content-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    From the Basement
+                </p>
+
+                <h2>
+                    Currently On Tap
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="beer-grid">
+
+
+            <!-- TAP 01 -->
+
+            <article class="beer-card">
+
+                <div class="beer-number">
+                    01
+                </div>
+
+                <div class="beer-card-body">
+
+                    <p class="beer-style">
+                        New England IPA
+                    </p>
+
+                    <h3>
+                        Fuzz Lightyear
+                    </h3>
+
+                    <p class="beer-description">
+                        A hazy, fruit-forward NEIPA brewed
+                        with Citra, Mosaic and Galaxy hops
+                        and finished with peach.
+                    </p>
+
+                </div>
+
+                <div class="beer-meta">
+
+                    <span>
+                        NEIPA
+                    </span>
+
+                    <span>
+                        ABV Coming Soon
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- TAP 02 -->
+
+            <article class="beer-card">
+
+                <div class="beer-number">
+                    02
+                </div>
+
+                <div class="beer-card-body">
+
+                    <p class="beer-style">
+                        Brown Ale
+                    </p>
+
+                    <h3>
+                        Something Brown
+                    </h3>
+
+                    <p class="beer-description">
+                        Malt-forward brown ale brewed
+                        with Maris Otter, Munich,
+                        Vienna and rich caramel malt
+                        character.
+                    </p>
+
+                </div>
+
+                <div class="beer-meta">
+
+                    <span>
+                        Brown Ale
+                    </span>
+
+                    <span>
+                        Fermenting
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- TAP 03 -->
+
+            <article class="beer-card">
+
+                <div class="beer-number">
+                    03
+                </div>
+
+                <div class="beer-card-body">
+
+                    <p class="beer-style">
+                        Hard Cider
+                    </p>
+
+                    <h3>
+                        Fall Cider
+                    </h3>
+
+                    <p class="beer-description">
+                        Crisp hard apple cider with
+                        a restrained touch of cinnamon
+                        and fall spice.
+                    </p>
+
+                </div>
+
+                <div class="beer-meta">
+
+                    <span>
+                        Hard Cider
+                    </span>
+
+                    <span>
+                        ABV 6.83%
+                    </span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BREWING TOOLS PANEL -->
+
+    <div class="content-panel"
+         id="panel-brewing-tools">
+
+        <div class="content-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    Useful Stuff
+                </p>
+
+                <h2>
+                    Brewing Tools
+                </h2>
+
+                <p class="section-description">
+                    Simple brewing tools without
+                    accounts, subscriptions or endless scrolling.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="tool-grid">
+
+
+            <a class="tool-card"
+               href="tools/abv.html">
+
+                <span class="tool-status">
+                    Available Now
+                </span>
+
+                <h3>
+                    ABV Calculator
+                </h3>
+
+                <p>
+                    Calculate alcohol by volume using
+                    original and final gravity.
+                </p>
+
+                <span class="card-action">
+                    Open Calculator →
+                </span>
+
+            </a>
+
+
+            <article class="tool-card coming-soon">
+
+                <span class="tool-status">
+                    Coming Soon
+                </span>
+
+                <h3>
+                    Hydrometer Correction
+                </h3>
+
+                <p>
+                    Correct hydrometer readings
+                    based on sample temperature.
+                </p>
+
+            </article>
+
+
+            <article class="tool-card coming-soon">
+
+                <span class="tool-status">
+                    Coming Soon
+                </span>
+
+                <h3>
+                    Priming Sugar
+                </h3>
+
+                <p>
+                    Calculate the right amount
+                    of priming sugar for your
+                    desired carbonation.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PLACEHOLDER PANELS -->
+
+    <div class="content-panel"
+         id="panel-recipes">
+
+        <p class="eyebrow">
+            From the Recipe Book
+        </p>
+
+        <h2>
+            Recipes
+        </h2>
+
+        <p class="placeholder-copy">
+            The Dutch Creek recipe library is coming soon.
+        </p>
+
+    </div>
+
+
+    <div class="content-panel"
+         id="panel-brewing">
+
+        <p class="eyebrow">
+            From the Brew House
+        </p>
+
+        <h2>
+            Brewing
+        </h2>
+
+        <p class="placeholder-copy">
+            Recipes, techniques, experiments and lessons
+            learned will live here.
+        </p>
+
+    </div>
+
+
+    <div class="content-panel"
+         id="panel-our-story">
+
+        <p class="eyebrow">
+            Est. 2023
+        </p>
+
+        <h2>
+            Our Story
+        </h2>
+
+        <p class="placeholder-copy">
+            Every great brewery starts somewhere.
+            Ours happens to be in a basement.
+        </p>
+
+    </div>
+
+
+    <div class="content-panel"
+         id="panel-shop">
+
+        <p class="eyebrow">
+            Questionable Merchandise
+        </p>
+
+        <h2>
+            Shop
+        </h2>
+
+        <p class="placeholder-copy">
+            Nobody asked for Dutch Creek merchandise.
+            We're probably making it anyway.
+        </p>
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     PERSISTENT FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-rule"></div>
+
+    <p class="footer-motto">
+        Good Beer
+        <span>•</span>
+        Good Friends
+        <span>•</span>
+        Better Stories
+    </p>
+
+    <div class="footer-rule"></div>
+
+
+    <p class="footer-location">
+        Dutch Creek Brewing
+        <span>|</span>
+        Zelienople, PA
+        <span>|</span>
+        Est. 2023
+    </p>
+
+</footer>
+
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

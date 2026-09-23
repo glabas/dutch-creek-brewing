@@ -1,0 +1,1155 @@
+/* =========================================================
+   DUTCH CREEK BREWING — V2
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Design Tokens
+   --------------------------------------------------------- */
+
+:root {
+    --black: #181713;
+    --charcoal: #211f1b;
+    --charcoal-light: #302d27;
+
+    --cream: #f5f0e5;
+    --paper: #fbf8f1;
+    --card: #eee7d9;
+
+    --copper: #ad6f2c;
+    --gold: #c58d43;
+
+    --text: #25231f;
+    --muted: #746d61;
+
+    --border: #d8cebc;
+
+    --max-width: 1200px;
+}
+
+
+/* ---------------------------------------------------------
+   Reset / Base
+   --------------------------------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: var(--black);
+
+    color: var(--text);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.55;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    line-height: 1.02;
+}
+
+h1 {
+    margin-bottom: 1rem;
+
+    font-size: clamp(3rem, 4.5vw, 4.75rem);
+
+    letter-spacing: -.045em;
+}
+
+h2 {
+    margin-bottom: .75rem;
+
+    font-size: clamp(2.5rem, 4vw, 4rem);
+
+    letter-spacing: -.035em;
+}
+
+h3 {
+    margin-bottom: .65rem;
+
+    font-size: 1.7rem;
+}
+
+.eyebrow {
+    margin: 0 0 .7rem;
+
+    color: var(--copper);
+
+    font-size: .72rem;
+
+    font-weight: 700;
+
+    letter-spacing: .18em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.site-header {
+    background: var(--black);
+
+    color: white;
+
+    border-bottom: 1px solid #38352e;
+}
+
+.header-inner {
+    max-width: var(--max-width);
+
+    min-height: 70px;
+
+    margin: 0 auto;
+
+    padding: 0 2rem;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 2rem;
+}
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: .8rem;
+
+    color: white;
+
+    text-decoration: none;
+}
+
+.brand-mark {
+    color: var(--gold);
+
+    font-size: 2rem;
+}
+
+.brand-copy {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.brand-name {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.55rem;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+.brand-tagline {
+    margin-top: .2rem;
+
+    color: #bdb5a6;
+
+    font-size: .65rem;
+
+    letter-spacing: .13em;
+
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   Navigation
+   --------------------------------------------------------- */
+
+.site-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.6rem;
+}
+
+.site-nav a {
+    position: relative;
+
+    padding: 1.5rem 0;
+
+    color: #d7d2c8;
+
+    font-size: .72rem;
+
+    font-weight: 700;
+
+    letter-spacing: .08em;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+}
+
+.site-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: .9rem;
+    left: 0;
+
+    height: 2px;
+
+    background: var(--gold);
+
+    transform: scaleX(0);
+
+    transition: transform .2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+    color: white;
+}
+
+.site-nav a.active::after {
+    transform: scaleX(1);
+}
+
+.nav-toggle {
+    display: none;
+
+    padding: .4rem;
+
+    border: 0;
+
+    background: none;
+
+    color: white;
+
+    font-size: 1.6rem;
+}
+
+
+/* =========================================================
+   Hero
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 390px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1d1b17 0%,
+            #25221d 48%,
+            #332f29 100%
+        );
+
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(15, 14, 12, .25),
+            rgba(15, 14, 12, 0)
+        );
+}
+
+.hero-inner {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: var(--max-width);
+
+    min-height: 390px;
+
+    margin: 0 auto;
+
+    padding: 2rem;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.hero-copy {
+    max-width: 650px;
+}
+
+.hero-description {
+    max-width: 610px;
+
+    margin: 0;
+
+    color: #d8d2c7;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.05rem;
+}
+
+.hero-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 1rem;
+
+    margin-top: 1.75rem;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.button {
+    min-height: 48px;
+
+    padding: .8rem 1.35rem;
+
+    border: 1px solid transparent;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 1.25rem;
+
+    font-size: .75rem;
+
+    font-weight: 800;
+
+    letter-spacing: .09em;
+
+    text-transform: uppercase;
+}
+
+.button-primary {
+    background: var(--copper);
+
+    color: white;
+}
+
+.button-primary:hover {
+    background: #bd7c34;
+}
+
+.button-secondary {
+    border-color: #8a8479;
+
+    background: transparent;
+
+    color: white;
+}
+
+.button-secondary:hover {
+    border-color: white;
+}
+
+
+/* =========================================================
+   Dynamic Content Area
+   ========================================================= */
+
+.content-area {
+    background: var(--paper);
+}
+
+.content-panel {
+    display: none;
+
+    max-width: var(--max-width);
+
+    min-height: 290px;
+
+    margin: 0 auto;
+
+    padding: 1.75rem 2rem 2rem;
+}
+
+.content-panel.active {
+    display: block;
+
+    animation: panelFade .2s ease;
+}
+
+@keyframes panelFade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-heading {
+    margin-bottom: 1rem;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 2rem;
+}
+
+.content-heading h2 {
+    margin-bottom: 0;
+}
+
+.section-description {
+    max-width: 650px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   Home Panel
+   ========================================================= */
+
+.home-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+.feature-card {
+    min-height: 150px;
+
+    padding: 1.15rem 1.25rem;
+
+    border: 0;
+
+    border-top: 4px solid var(--charcoal);
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    text-align: left;
+
+    display: flex;
+
+    gap: 1.25rem;
+
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
+
+.feature-card:hover {
+    background: #eee6d7;
+
+    transform: translateY(-2px);
+}
+
+.feature-number {
+    color: var(--copper);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.8rem;
+}
+
+.feature-label {
+    color: var(--muted);
+
+    font-size: .68rem;
+
+    font-weight: 800;
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+}
+
+.feature-card h3 {
+    margin-top: .4rem;
+}
+
+.feature-card p {
+    margin-bottom: 0;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   On Tap
+   ========================================================= */
+
+.beer-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+.beer-card {
+    min-height: 205px;
+
+    padding: 1.4rem 1.5rem 1.2rem;
+
+    border-top: 4px solid var(--charcoal);
+
+    background: var(--card);
+
+    display: grid;
+
+    grid-template-columns: 58px 1fr;
+
+    grid-template-rows: 1fr auto;
+
+    column-gap: 1rem;
+}
+
+.beer-number {
+    color: var(--copper);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 2.25rem;
+
+    line-height: 1;
+}
+
+.beer-card-body {
+    align-self: start;
+}
+
+.beer-style {
+    margin: 0 0 .35rem;
+
+    color: var(--muted);
+
+    font-size: .68rem;
+
+    font-weight: 800;
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+}
+
+.beer-card h3 {
+    margin-bottom: .55rem;
+}
+
+.beer-description {
+    margin: 0;
+
+    color: #5f594f;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+.beer-meta {
+    grid-column: 1 / -1;
+
+    margin-top: 1rem;
+
+    padding-top: .85rem;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    font-size: .65rem;
+
+    font-weight: 800;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   Brewing Tools
+   ========================================================= */
+
+.tool-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+.tool-card {
+    min-height: 175px;
+    height: 175px;
+
+    padding: 1.1rem 1.25rem;
+
+    border: 0;
+
+    border-top: 4px solid var(--charcoal);
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
+
+a.tool-card:hover {
+    background: #eee6d7;
+
+    transform: translateY(-2px);
+}
+
+.tool-status {
+    margin: 0 0 .55rem;
+
+    color: var(--copper);
+
+    font-size: .62rem;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+}
+
+.tool-card h3 {
+    margin: 0 0 .45rem;
+
+    font-size: 1.5rem;
+
+    line-height: 1.05;
+}
+
+.tool-card p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: .9rem;
+
+    line-height: 1.4;
+}
+
+.card-action {
+    margin-top: auto;
+
+    padding-top: .5rem;
+
+    color: var(--copper);
+
+    font-size: .72rem;
+
+    font-weight: 800;
+
+    letter-spacing: .04em;
+}
+
+.coming-soon {
+    opacity: .78;
+}
+
+
+/* =========================================================
+   Placeholder Panels
+   ========================================================= */
+
+.placeholder-copy {
+    max-width: 650px;
+
+    color: var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.15rem;
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+.site-footer {
+    min-height: 60px;
+
+    padding: .85rem 2rem;
+
+    background:
+        linear-gradient(
+            90deg,
+            #201a14,
+            #31251b,
+            #201a14
+        );
+
+    color: #d8c8af;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2rem;
+}
+
+.footer-rule {
+    width: 120px;
+
+    height: 1px;
+
+    background: #88643b;
+}
+
+.footer-motto,
+.footer-location {
+    margin: 0;
+
+    font-size: .68rem;
+
+    font-weight: 700;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+}
+
+.footer-motto {
+    white-space: nowrap;
+}
+
+.footer-motto span,
+.footer-location span {
+    margin: 0 .7rem;
+
+    color: var(--copper);
+}
+
+
+/* =========================================================
+   Desktop Height Optimization
+   Designed for desktop browser windows such as 1920x1080.
+   ========================================================= */
+
+@media (min-width: 1001px) and (max-height: 950px) {
+
+    /* Header */
+
+    .header-inner {
+        min-height: 64px;
+    }
+
+
+    /* Hero */
+
+    .hero,
+    .hero-inner {
+        min-height: 355px;
+    }
+
+    .hero-inner {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    h1 {
+        font-size: clamp(3rem, 4.2vw, 4.4rem);
+
+        margin-bottom: .8rem;
+    }
+
+    .hero-actions {
+        margin-top: 1.35rem;
+    }
+
+
+    /* Dynamic Content Area */
+
+    .content-panel {
+        height: 350px;
+        min-height: 350px;
+
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+
+        overflow: hidden;
+    }
+
+    .content-heading {
+        margin-bottom: .75rem;
+    }
+
+    .content-heading .eyebrow {
+        margin-bottom: .3rem;
+    }
+
+    .content-heading h2 {
+        font-size: 2.75rem;
+    }
+
+
+    /* Home */
+
+    .feature-card {
+        min-height: 175px;
+
+        padding: 1.15rem 1.25rem;
+    }
+
+    .feature-card h3 {
+        margin-top: .25rem;
+
+        margin-bottom: .4rem;
+    }
+
+    .feature-card p {
+        margin-top: .4rem;
+    }
+
+
+    /* On Tap */
+
+    .beer-card {
+        min-height: 185px;
+        height: 185px;
+
+        padding: 1.1rem 1.25rem .9rem;
+
+        grid-template-columns: 48px 1fr;
+
+        column-gap: .8rem;
+    }
+
+    .beer-number {
+        font-size: 1.9rem;
+    }
+
+    .beer-style {
+        margin-bottom: .2rem;
+
+        font-size: .62rem;
+    }
+
+    .beer-card h3 {
+        margin-bottom: .35rem;
+
+        font-size: 1.45rem;
+    }
+
+    .beer-description {
+        font-size: .9rem;
+
+        line-height: 1.35;
+    }
+
+    .beer-meta {
+        margin-top: .55rem;
+
+        padding-top: .5rem;
+
+        font-size: .58rem;
+    }
+
+
+    /* Brewing Tools */
+
+    .tool-grid {
+        gap: 1rem;
+    }
+
+    .tool-card {
+        min-height: 175px;
+        height: 175px;
+
+        padding: 1.1rem 1.25rem;
+    }
+
+    .tool-status {
+        margin: 0 0 .55rem;
+
+        font-size: .62rem;
+    }
+
+    .tool-card h3 {
+        margin: 0 0 .45rem;
+
+        font-size: 1.5rem;
+
+        line-height: 1.05;
+    }
+
+    .tool-card p {
+        margin: 0;
+
+        font-size: .9rem;
+
+        line-height: 1.4;
+    }
+
+    .card-action {
+        margin-top: auto;
+
+        padding-top: .5rem;
+
+        font-size: .72rem;
+    }
+
+
+    /* Footer */
+
+    .site-footer {
+        min-height: 54px;
+
+        padding-top: .65rem;
+        padding-bottom: .65rem;
+    }
+}
+
+
+/* =========================================================
+   Tablet / Smaller Desktop
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .site-nav {
+        gap: 1rem;
+    }
+
+    .site-nav a {
+        font-size: .65rem;
+    }
+
+    .footer-location {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   Tablet / Mobile Navigation
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .header-inner {
+        flex-wrap: wrap;
+
+        padding-top: .9rem;
+        padding-bottom: .9rem;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .site-nav {
+        display: none;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0;
+    }
+
+    .site-nav.open {
+        display: flex;
+    }
+
+    .site-nav a {
+        width: 100%;
+
+        padding: .7rem 0;
+    }
+
+    .site-nav a::after {
+        display: none;
+    }
+
+    .home-grid,
+    .beer-grid,
+    .tool-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-inner {
+        min-height: 450px;
+    }
+
+    .site-footer {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* =========================================================
+   Phone
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .header-inner,
+    .hero-inner,
+    .content-panel {
+        padding-left: 1.25rem;
+
+        padding-right: 1.25rem;
+    }
+
+    .brand-tagline {
+        display: none;
+    }
+
+    .brand-name {
+        font-size: 1.3rem;
+    }
+
+    h1 {
+        font-size: clamp(3rem, 14vw, 4.3rem);
+    }
+
+    .hero-inner {
+        min-height: 460px;
+
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .content-panel {
+        height: auto;
+        min-height: auto;
+
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+
+        overflow: visible;
+    }
+
+    .feature-card,
+    .beer-card,
+    .tool-card {
+        height: auto;
+        min-height: 0;
+    }
+
+    .beer-card {
+        grid-template-columns: 50px 1fr;
+    }
+
+    .footer-rule {
+        display: none;
+    }
+
+    .footer-motto {
+        white-space: normal;
+
+        text-align: center;
+
+        line-height: 2;
+    }
+}
