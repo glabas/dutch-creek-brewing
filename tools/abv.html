@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Free ABV calculator from Dutch Creek Brewing. Calculate alcohol by volume and apparent attenuation from original and final gravity.">
+
+    <title>ABV Calculator | Dutch Creek Brewing</title>
+
+    <link rel="stylesheet" href="../css/dutchcreek.css">
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a class="brand"
+           href="../index.html">
+
+            <div class="brand-mark">
+                🌾
+            </div>
+
+            <div class="brand-copy">
+
+                <span class="brand-name">
+                    Dutch Creek Brewing
+                </span>
+
+                <span class="brand-tagline">
+                    Brewed in some guy's basement since 2023.
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="site-nav">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="../index.html#on-tap">
+                On Tap
+            </a>
+
+            <a href="../index.html#recipes">
+                Recipes
+            </a>
+
+            <a href="../index.html#brewing">
+                Brewing
+            </a>
+
+            <a href="../index.html#brewing-tools"
+               class="active">
+                Brewing Tools
+            </a>
+
+            <a href="../index.html#our-story">
+                Our Story
+            </a>
+
+            <a href="../index.html#shop">
+                Shop
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     ABV CALCULATOR
+     ========================================================= -->
+
+<main class="calculator-page">
+
+    <section class="calculator-shell">
+
+        <a href="../index.html#brewing-tools"
+           class="calculator-back">
+            ← Back to Brewing Tools
+        </a>
+
+
+        <div class="calculator-heading">
+
+            <p class="eyebrow">
+                Brewing Tools
+            </p>
+
+            <h1>
+                ABV Calculator
+            </h1>
+
+            <p>
+                Enter your original gravity and final gravity
+                to calculate alcohol by volume and apparent
+                attenuation.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-layout">
+
+
+            <!-- INPUT SIDE -->
+
+            <section class="calculator-card">
+
+                <div class="calculator-card-heading">
+
+                    <span class="calculator-step">
+                        01
+                    </span>
+
+                    <div>
+
+                        <p class="calculator-label">
+                            Gravity Readings
+                        </p>
+
+                        <h2>
+                            Enter Your Numbers
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form id="abv-form"
+                      novalidate>
+
+
+                    <div class="calculator-field">
+
+                        <label for="original-gravity">
+                            Original Gravity
+                            <span>OG</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="original-gravity"
+                            name="original-gravity"
+                            min="1"
+                            max="1.2"
+                            step="0.001"
+                            inputmode="decimal"
+                            placeholder="1.050">
+
+                        <small>
+                            Gravity before fermentation.
+                        </small>
+
+                    </div>
+
+
+                    <div class="calculator-field">
+
+                        <label for="final-gravity">
+                            Final Gravity
+                            <span>FG</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="final-gravity"
+                            name="final-gravity"
+                            min="0.98"
+                            max="1.2"
+                            step="0.001"
+                            inputmode="decimal"
+                            placeholder="1.010">
+
+                        <small>
+                            Gravity after fermentation.
+                        </small>
+
+                    </div>
+
+
+                    <div id="calculator-error"
+                         class="calculator-error"
+                         role="alert"
+                         aria-live="polite">
+                    </div>
+
+
+                    <div class="calculator-actions">
+
+                        <button
+                            type="submit"
+                            class="button button-primary">
+
+                            Calculate ABV
+                            <span aria-hidden="true">→</span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="reset-calculator"
+                            class="button calculator-reset">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- RESULT SIDE -->
+
+            <section class="calculator-result-card">
+
+                <p class="calculator-label">
+                    Your Results
+                </p>
+
+
+                <div class="abv-result">
+
+                    <span id="abv-result">
+                        —.—
+                    </span>
+
+                    <span class="result-unit">
+                        % ABV
+                    </span>
+
+                </div>
+
+
+                <div class="result-divider"></div>
+
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Apparent Attenuation
+                    </span>
+
+                    <strong id="attenuation-result">
+                        — %
+                    </strong>
+
+                </div>
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Gravity Points Consumed
+                    </span>
+
+                    <strong id="gravity-points-result">
+                        — points
+                    </strong>
+
+                </div>
+
+
+                <p class="result-note"
+                   id="result-note">
+
+                    Enter your gravity readings and select
+                    Calculate ABV.
+
+                </p>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORMULA / INFORMATION
+             ================================================= -->
+
+        <section class="calculator-info">
+
+            <div>
+
+                <p class="eyebrow">
+                    The Math
+                </p>
+
+                <h2>
+                    How ABV Is Calculated
+                </h2>
+
+            </div>
+
+
+            <div class="formula-card">
+
+                <span class="formula">
+                    ABV = (OG − FG) × 131.25
+                </span>
+
+                <p>
+                    This common homebrewing formula estimates
+                    alcohol by volume from the change in
+                    specific gravity during fermentation.
+                </p>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-rule"></div>
+
+    <p class="footer-motto">
+        Good Beer
+        <span>•</span>
+        Good Friends
+        <span>•</span>
+        Better Stories
+    </p>
+
+    <div class="footer-rule"></div>
+
+
+    <p class="footer-location">
+        Dutch Creek Brewing
+        <span>|</span>
+        Zelienople, PA
+        <span>|</span>
+        Est. 2023
+    </p>
+
+</footer>
+
+
+
+<!-- =========================================================
+     CALCULATOR JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form =
+        document.getElementById("abv-form");
+
+    const originalGravity =
+        document.getElementById("original-gravity");
+
+    const finalGravity =
+        document.getElementById("final-gravity");
+
+    const abvResult =
+        document.getElementById("abv-result");
+
+    const attenuationResult =
+        document.getElementById("attenuation-result");
+
+    const gravityPointsResult =
+        document.getElementById("gravity-points-result");
+
+    const resultNote =
+        document.getElementById("result-note");
+
+    const error =
+        document.getElementById("calculator-error");
+
+    const resetButton =
+        document.getElementById("reset-calculator");
+
+
+    function clearError() {
+        error.textContent = "";
+    }
+
+
+    function resetResults() {
+
+        abvResult.textContent = "—.—";
+
+        attenuationResult.textContent = "— %";
+
+        gravityPointsResult.textContent = "— points";
+
+        resultNote.textContent =
+            "Enter your gravity readings and select Calculate ABV.";
+
+    }
+
+
+    function normalizeGravity(value) {
+
+        const trimmedValue =
+            value.trim();
+
+        if (!trimmedValue) {
+            return null;
+        }
+
+        let gravity =
+            parseFloat(trimmedValue);
+
+        if (Number.isNaN(gravity)) {
+            return null;
+        }
+
+        // Allow shorthand homebrewing entry:
+        // 1050 -> 1.050
+        // 1012 -> 1.012
+
+        if (gravity >= 980 && gravity <= 1200) {
+            gravity = gravity / 1000;
+        }
+
+        return gravity;
+
+    }
+
+
+    function formatGravityInput(input) {
+
+        const gravity =
+            normalizeGravity(input.value);
+
+        if (gravity !== null &&
+            gravity >= 0.980 &&
+            gravity <= 1.200) {
+
+            input.value =
+                gravity.toFixed(3);
+
+        }
+
+    }
+
+
+    function attenuationDescription(attenuation) {
+
+        if (attenuation < 65) {
+            return "Lower apparent attenuation.";
+        }
+
+        if (attenuation < 72) {
+            return "Moderate apparent attenuation.";
+        }
+
+        if (attenuation <= 80) {
+            return "Typical apparent attenuation for many ale fermentations.";
+        }
+
+        if (attenuation <= 90) {
+            return "High apparent attenuation.";
+        }
+
+        return "Very high apparent attenuation — double-check your gravity readings if unexpected.";
+
+    }
+
+
+    function calculate(showErrors = false) {
+
+        clearError();
+
+        const og =
+            normalizeGravity(originalGravity.value);
+
+        const fg =
+            normalizeGravity(finalGravity.value);
+
+
+        // During live entry, stay quiet until both values exist.
+
+        if (og === null || fg === null) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Please enter both an original gravity and final gravity.";
+
+            }
+
+            return false;
+        }
+
+
+        if (og <= 1 ||
+            og > 1.200) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Original gravity should be between 1.001 and 1.200.";
+
+            }
+
+            return false;
+        }
+
+
+        if (fg < 0.980 ||
+            fg > 1.200) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Final gravity should be between 0.980 and 1.200.";
+
+            }
+
+            return false;
+        }
+
+
+        if (fg >= og) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Final gravity must be lower than original gravity.";
+
+            }
+
+            return false;
+        }
+
+
+        const abv =
+            (og - fg) * 131.25;
+
+
+        const attenuation =
+            ((og - fg) / (og - 1)) * 100;
+
+
+        const gravityPoints =
+            Math.round((og - fg) * 1000);
+
+
+        abvResult.textContent =
+            abv.toFixed(2);
+
+
+        attenuationResult.textContent =
+            `${attenuation.toFixed(1)} %`;
+
+
+        gravityPointsResult.textContent =
+            `${gravityPoints} points`;
+
+
+        resultNote.textContent =
+            `OG ${og.toFixed(3)} → FG ${fg.toFixed(3)}. ${attenuationDescription(attenuation)}`;
+
+
+        return true;
+
+    }
+
+
+    form.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        formatGravityInput(originalGravity);
+        formatGravityInput(finalGravity);
+
+        calculate(true);
+
+    });
+
+
+    [originalGravity, finalGravity].forEach(input => {
+
+        input.addEventListener("input", () => {
+            calculate(false);
+        });
+
+
+        input.addEventListener("blur", () => {
+
+            formatGravityInput(input);
+
+            calculate(false);
+
+        });
+
+    });
+
+
+    resetButton.addEventListener("click", () => {
+
+        form.reset();
+
+        clearError();
+
+        resetResults();
+
+        originalGravity.focus();
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".nav-link");
 
 
-    function showPanel(panelName) {
+    function showPanel(panelName, updateHash = false) {
 
         const targetPanel =
             document.getElementById(`panel-${panelName}`);
@@ -51,6 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
+        // Update the URL hash when navigating inside the site.
+
+        if (updateHash) {
+
+            history.replaceState(
+                null,
+                "",
+                `#${panelName}`
+            );
+
+        }
+
+
         // Close mobile navigation after selection.
 
         const siteNav =
@@ -80,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    // =====================================================
+    // Panel Click Navigation
+    // =====================================================
+
     panelTriggers.forEach(trigger => {
 
         trigger.addEventListener("click", event => {
@@ -93,11 +110,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
             event.preventDefault();
 
-            showPanel(panelName);
+            showPanel(
+                panelName,
+                true
+            );
 
         });
 
     });
+
+
+
+    // =====================================================
+    // URL Hash Navigation
+    //
+    // Allows direct links such as:
+    //
+    // index.html#on-tap
+    // index.html#recipes
+    // index.html#brewing
+    // index.html#brewing-tools
+    // index.html#our-story
+    // index.html#shop
+    //
+    // =====================================================
+
+    function showPanelFromHash() {
+
+        const panelName =
+            window.location.hash
+                .replace("#", "")
+                .trim();
+
+        if (!panelName) {
+            return;
+        }
+
+
+        const targetPanel =
+            document.getElementById(
+                `panel-${panelName}`
+            );
+
+
+        if (targetPanel) {
+
+            showPanel(
+                panelName,
+                false
+            );
+
+        }
+
+    }
+
+
+    // Check the URL when index.html first loads.
+
+    showPanelFromHash();
+
+
+    // Also respond if the browser hash changes.
+
+    window.addEventListener(
+        "hashchange",
+        showPanelFromHash
+    );
 
 
 

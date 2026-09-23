@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Free hydrometer temperature correction calculator from Dutch Creek Brewing. Correct specific gravity readings for sample temperature.">
+
+    <title>Hydrometer Correction | Dutch Creek Brewing</title>
+
+    <link rel="stylesheet" href="../css/dutchcreek.css">
+</head>
+
+
+<body class="hydrometer-page">
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a class="brand"
+           href="../index.html">
+
+            <div class="brand-mark">
+                🌾
+            </div>
+
+            <div class="brand-copy">
+
+                <span class="brand-name">
+                    Dutch Creek Brewing
+                </span>
+
+                <span class="brand-tagline">
+                    Brewed in some guy's basement since 2023.
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="site-nav">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="../index.html#on-tap">
+                On Tap
+            </a>
+
+            <a href="../index.html#recipes">
+                Recipes
+            </a>
+
+            <a href="../index.html#brewing">
+                Brewing
+            </a>
+
+            <a href="../index.html#brewing-tools"
+               class="active">
+                Brewing Tools
+            </a>
+
+            <a href="../index.html#our-story">
+                Our Story
+            </a>
+
+            <a href="../index.html#shop">
+                Shop
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     ABV CALCULATOR
+     ========================================================= -->
+
+<main class="calculator-page">
+
+    <section class="calculator-shell">
+
+        <a href="../index.html#brewing-tools"
+           class="calculator-back">
+            ← Back to Brewing Tools
+        </a>
+
+        <div class="calculator-heading">
+
+            <p class="eyebrow">
+                Brewing Tools
+            </p>
+
+            <h1>
+                Hydrometer Correction
+            </h1>
+
+            <p>
+                Correct a hydrometer gravity reading when your sample
+                temperature differs from the hydrometer's calibration temperature.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-layout">
+
+            <!-- INPUT SIDE -->
+
+            <section class="calculator-card">
+
+                <div class="calculator-card-heading">
+
+                    <span class="calculator-step">
+                        01
+                    </span>
+
+                    <div>
+
+                        <p class="calculator-label">
+                            Hydrometer Reading
+                        </p>
+
+                        <h2>
+                            Enter Your Numbers
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form id="hydrometer-form"
+                      novalidate>
+
+
+                    <div class="calculator-field">
+
+                        <label for="measured-gravity">
+                            Measured Gravity
+                            <span>SG</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="measured-gravity"
+                            name="measured-gravity"
+                            min="0.98"
+                            max="1.2"
+                            step="0.001"
+                            inputmode="decimal"
+                            placeholder="1.050">
+
+                        <small>
+                            The specific gravity shown by your hydrometer.
+                        </small>
+
+                    </div>
+
+
+                    <div class="calculator-field">
+
+                        <label for="sample-temperature">
+                            Sample Temperature
+                            <span>°F</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="sample-temperature"
+                            name="sample-temperature"
+                            min="32"
+                            max="212"
+                            step="0.1"
+                            inputmode="decimal"
+                            placeholder="75">
+
+                        <small>
+                            Temperature of the sample when the reading was taken.
+                        </small>
+
+                    </div>
+
+
+                    <div class="calculator-field">
+
+                        <label for="calibration-temperature">
+                            Hydrometer Calibration
+                            <span>°F</span>
+                        </label>
+
+                        <select
+                            id="calibration-temperature"
+                            name="calibration-temperature">
+
+                            <option value="60" selected>
+                                60°F
+                            </option>
+
+                            <option value="68">
+                                68°F
+                            </option>
+
+                        </select>
+
+                        <small>
+                            Check the calibration temperature printed on your hydrometer.
+                        </small>
+
+                    </div>
+
+
+                    <div id="calculator-error"
+                         class="calculator-error"
+                         role="alert"
+                         aria-live="polite">
+                    </div>
+
+
+                    <div class="calculator-actions">
+
+                        <button
+                            type="submit"
+                            class="button button-primary">
+
+                            Correct Gravity
+                            <span aria-hidden="true">→</span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="reset-calculator"
+                            class="button calculator-reset">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- RESULT SIDE -->
+
+            <section class="calculator-result-card">
+
+                <p class="calculator-label">
+                    Your Results
+                </p>
+
+
+                <div class="abv-result">
+
+                    <span id="corrected-gravity-result">
+                        —.——
+                    </span>
+
+                    <span class="result-unit">
+                        Corrected SG
+                    </span>
+
+                </div>
+
+
+                <div class="result-divider"></div>
+
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Gravity Correction
+                    </span>
+
+                    <strong id="correction-points-result">
+                        — points
+                    </strong>
+
+                </div>
+
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Sample Temperature
+                    </span>
+
+                    <strong id="temperature-result">
+                        — °F
+                    </strong>
+
+                </div>
+
+
+                <p class="result-note"
+                   id="result-note">
+
+                    Enter your hydrometer reading and sample temperature.
+
+                </p>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORMULA / INFORMATION
+             ================================================= -->
+
+        <section class="calculator-info">
+
+            <div>
+
+                <p class="eyebrow">
+                    Why Correct It?
+                </p>
+
+                <h2>
+                    Temperature Changes the Reading
+                </h2>
+
+            </div>
+
+
+            <div class="formula-card">
+
+                <span class="formula">
+                    Hydrometers are calibrated at a specific temperature.
+                </span>
+
+                <p>
+                    Wort and beer density change with temperature. This calculator
+                    adjusts your observed specific gravity to the hydrometer's
+                    calibration temperature using a standard brewing correction
+                    relationship. For best accuracy, cool samples reasonably close
+                    to calibration temperature before measuring.
+                </p>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-rule"></div>
+
+    <p class="footer-motto">
+        Good Beer
+        <span>•</span>
+        Good Friends
+        <span>•</span>
+        Better Stories
+    </p>
+
+    <div class="footer-rule"></div>
+
+
+    <p class="footer-location">
+        Dutch Creek Brewing
+        <span>|</span>
+        Zelienople, PA
+        <span>|</span>
+        Est. 2023
+    </p>
+
+</footer>
+
+
+
+<!-- =========================================================
+     HYDROMETER CALCULATOR JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form =
+        document.getElementById("hydrometer-form");
+
+    const measuredGravity =
+        document.getElementById("measured-gravity");
+
+    const sampleTemperature =
+        document.getElementById("sample-temperature");
+
+    const calibrationTemperature =
+        document.getElementById("calibration-temperature");
+
+    const correctedGravityResult =
+        document.getElementById("corrected-gravity-result");
+
+    const correctionPointsResult =
+        document.getElementById("correction-points-result");
+
+    const temperatureResult =
+        document.getElementById("temperature-result");
+
+    const resultNote =
+        document.getElementById("result-note");
+
+    const error =
+        document.getElementById("calculator-error");
+
+    const resetButton =
+        document.getElementById("reset-calculator");
+
+
+    function clearError() {
+        error.textContent = "";
+    }
+
+
+    function resetResults() {
+
+        correctedGravityResult.textContent = "—.——";
+
+        correctionPointsResult.textContent = "— points";
+
+        temperatureResult.textContent = "— °F";
+
+        resultNote.textContent =
+            "Enter your hydrometer reading and sample temperature.";
+
+    }
+
+
+    function normalizeGravity(value) {
+
+        const trimmedValue =
+            value.trim();
+
+        if (!trimmedValue) {
+            return null;
+        }
+
+        let gravity =
+            parseFloat(trimmedValue);
+
+        if (Number.isNaN(gravity)) {
+            return null;
+        }
+
+        // Homebrewing shorthand:
+        // 1050 -> 1.050
+
+        if (gravity >= 980 && gravity <= 1200) {
+            gravity = gravity / 1000;
+        }
+
+        return gravity;
+
+    }
+
+
+    function formatGravityInput() {
+
+        const gravity =
+            normalizeGravity(measuredGravity.value);
+
+        if (gravity !== null &&
+            gravity >= 0.980 &&
+            gravity <= 1.200) {
+
+            measuredGravity.value =
+                gravity.toFixed(3);
+
+        }
+
+    }
+
+
+    // Standard hydrometer temperature correction polynomial.
+    // Temperatures are in degrees Fahrenheit.
+    // The ratio corrects the observed SG from the sample
+    // temperature to the hydrometer calibration temperature.
+
+    function temperatureFactor(tempF) {
+
+        return 1.00130346
+            - 0.000134722124 * tempF
+            + 0.00000204052596 * Math.pow(tempF, 2)
+            - 0.00000000232820948 * Math.pow(tempF, 3);
+
+    }
+
+
+    function correctedGravity(
+        observedGravity,
+        sampleTempF,
+        calibrationTempF
+    ) {
+
+        return observedGravity
+            * temperatureFactor(sampleTempF)
+            / temperatureFactor(calibrationTempF);
+
+    }
+
+
+    function calculate(showErrors = false) {
+
+        clearError();
+
+        const gravity =
+            normalizeGravity(measuredGravity.value);
+
+        const sampleTemp =
+            parseFloat(sampleTemperature.value);
+
+        const calibrationTemp =
+            parseFloat(calibrationTemperature.value);
+
+
+        if (gravity === null ||
+            Number.isNaN(sampleTemp) ||
+            Number.isNaN(calibrationTemp)) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Please enter a gravity reading and sample temperature.";
+
+            }
+
+            return false;
+        }
+
+
+        if (gravity < 0.980 ||
+            gravity > 1.200) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Measured gravity should be between 0.980 and 1.200.";
+
+            }
+
+            return false;
+        }
+
+
+        if (sampleTemp < 32 ||
+            sampleTemp > 212) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Sample temperature should be between 32°F and 212°F.";
+
+            }
+
+            return false;
+        }
+
+
+        const corrected =
+            correctedGravity(
+                gravity,
+                sampleTemp,
+                calibrationTemp
+            );
+
+
+        const correctionPoints =
+            (corrected - gravity) * 1000;
+
+
+        correctedGravityResult.textContent =
+            corrected.toFixed(3);
+
+
+        correctionPointsResult.textContent =
+            `${correctionPoints >= 0 ? "+" : ""}${correctionPoints.toFixed(1)} points`;
+
+
+        temperatureResult.textContent =
+            `${sampleTemp.toFixed(1)} °F`;
+
+
+        const temperatureDifference =
+            Math.abs(sampleTemp - calibrationTemp);
+
+
+        if (temperatureDifference <= 2) {
+
+            resultNote.textContent =
+                `Your sample is very close to the ${calibrationTemp.toFixed(0)}°F calibration temperature, so the correction is minimal.`;
+
+        }
+        else if (temperatureDifference <= 20) {
+
+            resultNote.textContent =
+                `Corrected from ${gravity.toFixed(3)} at ${sampleTemp.toFixed(1)}°F to a ${calibrationTemp.toFixed(0)}°F calibration basis.`;
+
+        }
+        else {
+
+            resultNote.textContent =
+                `Corrected from ${gravity.toFixed(3)} at ${sampleTemp.toFixed(1)}°F. For best accuracy, consider cooling the sample closer to ${calibrationTemp.toFixed(0)}°F before measuring.`;
+
+        }
+
+
+        return true;
+
+    }
+
+
+    form.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        formatGravityInput();
+
+        calculate(true);
+
+    });
+
+
+    measuredGravity.addEventListener("input", () => {
+        calculate(false);
+    });
+
+
+    measuredGravity.addEventListener("blur", () => {
+
+        formatGravityInput();
+
+        calculate(false);
+
+    });
+
+
+    sampleTemperature.addEventListener("input", () => {
+        calculate(false);
+    });
+
+
+    calibrationTemperature.addEventListener("change", () => {
+        calculate(false);
+    });
+
+
+    resetButton.addEventListener("click", () => {
+
+        form.reset();
+
+        clearError();
+
+        resetResults();
+
+        measuredGravity.focus();
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

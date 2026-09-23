@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Free priming sugar calculator from Dutch Creek Brewing. Calculate bottle conditioning sugar based on batch volume, temperature, carbonation target and sugar type.">
+
+    <title>Priming Sugar Calculator | Dutch Creek Brewing</title>
+
+    <link rel="stylesheet" href="../css/dutchcreek.css">
+</head>
+
+
+<body class="priming-page">
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a class="brand"
+           href="../index.html">
+
+            <div class="brand-mark">
+                🌾
+            </div>
+
+            <div class="brand-copy">
+
+                <span class="brand-name">
+                    Dutch Creek Brewing
+                </span>
+
+                <span class="brand-tagline">
+                    Brewed in some guy's basement since 2023.
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="site-nav">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="../index.html#on-tap">
+                On Tap
+            </a>
+
+            <a href="../index.html#recipes">
+                Recipes
+            </a>
+
+            <a href="../index.html#brewing">
+                Brewing
+            </a>
+
+            <a href="../index.html#brewing-tools"
+               class="active">
+                Brewing Tools
+            </a>
+
+            <a href="../index.html#our-story">
+                Our Story
+            </a>
+
+            <a href="../index.html#shop">
+                Shop
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     PRIMING SUGAR CALCULATOR
+     ========================================================= -->
+
+<main class="calculator-page">
+
+    <section class="calculator-shell">
+
+        <a href="../index.html#brewing-tools"
+           class="calculator-back">
+            ← Back to Brewing Tools
+        </a>
+
+
+        <div class="calculator-heading">
+
+            <p class="eyebrow">
+                Brewing Tools
+            </p>
+
+            <h1>
+                Priming Sugar Calculator
+            </h1>
+
+            <p>
+                Calculate the amount of priming sugar needed for
+                bottle conditioning your beer.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-layout">
+
+            <!-- =================================================
+                 INPUT SIDE
+                 ================================================= -->
+
+            <section class="calculator-card">
+
+                <div class="calculator-card-heading">
+
+                    <span class="calculator-step">
+                        01
+                    </span>
+
+                    <div>
+
+                        <p class="calculator-label">
+                            Bottle Conditioning
+                        </p>
+
+                        <h2>
+                            Enter Your Numbers
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form id="priming-form"
+                      novalidate>
+
+
+                    <!-- BATCH VOLUME -->
+
+                    <div class="calculator-field">
+
+                        <label for="batch-volume">
+                            Batch Volume
+                            <span>GAL</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="batch-volume"
+                            name="batch-volume"
+                            min="0.1"
+                            max="100"
+                            step="0.1"
+                            inputmode="decimal"
+                            placeholder="5.0">
+
+                        <small>
+                            Amount of finished beer being bottled.
+                        </small>
+
+                    </div>
+
+
+                    <!-- BEER TEMPERATURE -->
+
+                    <div class="calculator-field">
+
+                        <label for="beer-temperature">
+                            Warmest Beer Temperature
+                            <span>°F</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="beer-temperature"
+                            name="beer-temperature"
+                            min="32"
+                            max="100"
+                            step="0.1"
+                            inputmode="decimal"
+                            placeholder="68">
+
+                        <small>
+                            Highest temperature reached after fermentation finished.
+                        </small>
+
+                    </div>
+
+
+                    <!-- TARGET CARBONATION -->
+
+                    <div class="calculator-field">
+
+                        <label for="target-carbonation">
+                            Target Carbonation
+                            <span>VOL CO₂</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="target-carbonation"
+                            name="target-carbonation"
+                            min="1"
+                            max="5"
+                            step="0.1"
+                            inputmode="decimal"
+                            placeholder="2.4">
+
+                        <small>
+                            British ale 1.5–2.0 · American ale 2.2–2.7 ·
+                            Wheat beer 2.7–4.0
+                        </small>
+
+                    </div>
+
+
+                    <!-- SUGAR TYPE -->
+
+                    <div class="calculator-field">
+
+                        <label for="sugar-type">
+                            Priming Sugar
+                            <span>TYPE</span>
+                        </label>
+
+                        <select
+                            id="sugar-type"
+                            name="sugar-type">
+
+                            <option value="dextrose" selected>
+                                Corn Sugar (Dextrose)
+                            </option>
+
+                            <option value="sucrose">
+                                Table Sugar (Sucrose)
+                            </option>
+
+                            <option value="dme">
+                                Dry Malt Extract (DME)
+                            </option>
+
+                        </select>
+
+                        <small>
+                            Sugar type changes the amount required by weight.
+                        </small>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div id="calculator-error"
+                         class="calculator-error"
+                         role="alert"
+                         aria-live="polite">
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="calculator-actions">
+
+                        <button
+                            type="submit"
+                            class="button button-primary">
+
+                            Calculate Sugar
+                            <span aria-hidden="true">→</span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="reset-calculator"
+                            class="button calculator-reset">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RESULT SIDE
+                 ================================================= -->
+
+            <section class="calculator-result-card">
+
+                <p class="calculator-label">
+                    Your Results
+                </p>
+
+
+                <div class="abv-result">
+
+                    <span id="sugar-ounces-result">
+                        —.——
+                    </span>
+
+                    <span class="result-unit">
+                        OZ PRIMING SUGAR
+                    </span>
+
+                </div>
+
+
+                <div class="result-divider"></div>
+
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Sugar Weight
+                    </span>
+
+                    <strong id="sugar-grams-result">
+                        — g
+                    </strong>
+
+                </div>
+
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Target Carbonation
+                    </span>
+
+                    <strong id="target-result">
+                        — vol
+                    </strong>
+
+                </div>
+
+
+                <div class="secondary-result">
+
+                    <span class="secondary-result-label">
+                        Residual CO₂
+                    </span>
+
+                    <strong id="residual-result">
+                        — vol
+                    </strong>
+
+                </div>
+
+
+                <p class="result-note"
+                   id="result-note">
+
+                    Enter your batch volume, beer temperature and
+                    target carbonation.
+
+                </p>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INFORMATION
+             ================================================= -->
+
+        <section class="calculator-info">
+
+            <div>
+
+                <p class="eyebrow">
+                    The Math
+                </p>
+
+                <h2>
+                    Carbonation Without Guesswork
+                </h2>
+
+            </div>
+
+
+            <div class="formula-card">
+
+                <span class="formula">
+                    Target CO₂ − Residual CO₂ = CO₂ To Add
+                </span>
+
+                <p>
+                    Finished beer already contains dissolved CO₂.
+                    This calculator estimates the amount remaining
+                    based on the warmest temperature the beer reached
+                    after fermentation, then calculates the sugar
+                    needed to reach your target carbonation.
+                </p>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-rule"></div>
+
+    <p class="footer-motto">
+        Good Beer
+        <span>•</span>
+        Good Friends
+        <span>•</span>
+        Better Stories
+    </p>
+
+    <div class="footer-rule"></div>
+
+
+    <p class="footer-location">
+        Dutch Creek Brewing
+        <span>|</span>
+        Zelienople, PA
+        <span>|</span>
+        Est. 2023
+    </p>
+
+</footer>
+
+
+
+<!-- =========================================================
+     PRIMING SUGAR CALCULATOR JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form =
+        document.getElementById("priming-form");
+
+    const batchVolume =
+        document.getElementById("batch-volume");
+
+    const beerTemperature =
+        document.getElementById("beer-temperature");
+
+    const targetCarbonation =
+        document.getElementById("target-carbonation");
+
+    const sugarType =
+        document.getElementById("sugar-type");
+
+
+    const sugarOuncesResult =
+        document.getElementById("sugar-ounces-result");
+
+    const sugarGramsResult =
+        document.getElementById("sugar-grams-result");
+
+    const targetResult =
+        document.getElementById("target-result");
+
+    const residualResult =
+        document.getElementById("residual-result");
+
+    const resultNote =
+        document.getElementById("result-note");
+
+    const error =
+        document.getElementById("calculator-error");
+
+    const resetButton =
+        document.getElementById("reset-calculator");
+
+
+    /* ---------------------------------------------------------
+       Constants
+       --------------------------------------------------------- */
+
+    const GALLONS_TO_LITERS = 3.78541;
+    const GRAMS_TO_OUNCES = 0.035274;
+
+
+    /*
+       Dextrose is our baseline.
+
+       Sucrose requires approximately 91% of the
+       dextrose weight.
+
+       DME varies by product and fermentability.
+       We use 1.35 as a practical brewing estimate.
+    */
+
+    const sugarFactors = {
+
+        dextrose: {
+            factor: 1.00,
+            name: "corn sugar (dextrose)"
+        },
+
+        sucrose: {
+            factor: 0.91,
+            name: "table sugar (sucrose)"
+        },
+
+        dme: {
+            factor: 1.35,
+            name: "dry malt extract (DME)"
+        }
+
+    };
+
+
+    /* ---------------------------------------------------------
+       Utility
+       --------------------------------------------------------- */
+
+    function clearError() {
+        error.textContent = "";
+    }
+
+
+    function resetResults() {
+
+        sugarOuncesResult.textContent = "—.——";
+
+        sugarGramsResult.textContent = "— g";
+
+        targetResult.textContent = "— vol";
+
+        residualResult.textContent = "— vol";
+
+        resultNote.textContent =
+            "Enter your batch volume, beer temperature and target carbonation.";
+
+    }
+
+
+    /* ---------------------------------------------------------
+       Residual CO2
+
+       Standard homebrewing residual CO2 relationship.
+
+       Temperature must be Fahrenheit.
+       Result is volumes of CO2.
+       --------------------------------------------------------- */
+
+    function residualCO2(tempF) {
+
+        return 3.0378
+            - (0.050062 * tempF)
+            + (0.00026555 * Math.pow(tempF, 2));
+
+    }
+
+
+    /* ---------------------------------------------------------
+       Calculation
+       --------------------------------------------------------- */
+
+    function calculate(showErrors = false) {
+
+        clearError();
+
+
+        const gallons =
+            parseFloat(batchVolume.value);
+
+        const temperature =
+            parseFloat(beerTemperature.value);
+
+        const target =
+            parseFloat(targetCarbonation.value);
+
+        const selectedSugar =
+            sugarFactors[sugarType.value];
+
+
+        /* Missing values */
+
+        if (
+            Number.isNaN(gallons) ||
+            Number.isNaN(temperature) ||
+            Number.isNaN(target)
+        ) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Please enter batch volume, beer temperature and target carbonation.";
+
+            }
+
+            return false;
+
+        }
+
+
+        /* Volume validation */
+
+        if (gallons <= 0 || gallons > 100) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Batch volume should be greater than 0 and no more than 100 gallons.";
+
+            }
+
+            return false;
+
+        }
+
+
+        /* Temperature validation */
+
+        if (temperature < 32 || temperature > 100) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Beer temperature should be between 32°F and 100°F.";
+
+            }
+
+            return false;
+
+        }
+
+
+        /* Carbonation validation */
+
+        if (target < 1 || target > 5) {
+
+            resetResults();
+
+            if (showErrors) {
+
+                error.textContent =
+                    "Target carbonation should be between 1.0 and 5.0 volumes of CO₂.";
+
+            }
+
+            return false;
+
+        }
+
+
+        /* Residual carbonation */
+
+        const residual =
+            residualCO2(temperature);
+
+
+        /*
+           If the beer already contains at least as much CO2
+           as the requested target, additional priming sugar
+           is not required.
+        */
+
+        const co2Needed =
+            target - residual;
+
+
+        if (co2Needed <= 0) {
+
+            sugarOuncesResult.textContent =
+                "0.00";
+
+            sugarGramsResult.textContent =
+                "0 g";
+
+            targetResult.textContent =
+                `${target.toFixed(2)} vol`;
+
+            residualResult.textContent =
+                `${residual.toFixed(2)} vol`;
+
+            resultNote.textContent =
+                "Estimated residual CO₂ already meets or exceeds your carbonation target. No priming sugar is indicated.";
+
+            return true;
+
+        }
+
+
+        /* Convert batch volume to liters */
+
+        const liters =
+            gallons * GALLONS_TO_LITERS;
+
+
+        /*
+           Dextrose baseline:
+
+           approximately 4.0 grams per liter
+           for each additional volume of CO2.
+        */
+
+        const dextroseGrams =
+            liters * co2Needed * 4.0;
+
+
+        /* Adjust for selected sugar */
+
+        const sugarGrams =
+            dextroseGrams * selectedSugar.factor;
+
+
+        const sugarOunces =
+            sugarGrams * GRAMS_TO_OUNCES;
+
+
+        /* -----------------------------------------------------
+           Results
+           ----------------------------------------------------- */
+
+        sugarOuncesResult.textContent =
+            sugarOunces.toFixed(2);
+
+        sugarGramsResult.textContent =
+            `${sugarGrams.toFixed(0)} g`;
+
+        targetResult.textContent =
+            `${target.toFixed(2)} vol`;
+
+        residualResult.textContent =
+            `${residual.toFixed(2)} vol`;
+
+
+        /* -----------------------------------------------------
+           Result Note / Safety Guidance
+           ----------------------------------------------------- */
+
+        if (target >= 4.0) {
+
+            resultNote.textContent =
+                `${gallons.toFixed(1)} gal at ${temperature.toFixed(0)}°F using ${selectedSugar.name}. CAUTION: ${target.toFixed(1)} volumes is a high carbonation level. Use bottles and closures rated for the intended pressure.`;
+
+        }
+        else if (target >= 3.0) {
+
+            resultNote.textContent =
+                `${gallons.toFixed(1)} gal at ${temperature.toFixed(0)}°F using ${selectedSugar.name}. This is a relatively high carbonation target; confirm your bottles are suitable.`;
+
+        }
+        else {
+
+            resultNote.textContent =
+                `For ${gallons.toFixed(1)} gallons of beer at ${temperature.toFixed(0)}°F using ${selectedSugar.name}.`;
+
+        }
+
+
+        /*
+           DME is less standardized than refined sugars,
+           so tell the brewer that explicitly.
+        */
+
+        if (sugarType.value === "dme") {
+
+            resultNote.textContent +=
+                " DME fermentability varies by product, so treat this amount as an estimate.";
+
+        }
+
+
+        return true;
+
+    }
+
+
+    /* ---------------------------------------------------------
+       Submit
+       --------------------------------------------------------- */
+
+    form.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        calculate(true);
+
+    });
+
+
+    /* ---------------------------------------------------------
+       Live Updates
+       --------------------------------------------------------- */
+
+    batchVolume.addEventListener("input", () => {
+        calculate(false);
+    });
+
+
+    beerTemperature.addEventListener("input", () => {
+        calculate(false);
+    });
+
+
+    targetCarbonation.addEventListener("input", () => {
+        calculate(false);
+    });
+
+
+    sugarType.addEventListener("change", () => {
+        calculate(false);
+    });
+
+
+    /* ---------------------------------------------------------
+       Reset
+       --------------------------------------------------------- */
+
+    resetButton.addEventListener("click", () => {
+
+        form.reset();
+
+        clearError();
+
+        resetResults();
+
+        batchVolume.focus();
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>
