@@ -1,0 +1,9 @@
+.git
+.git/**
+.github
+.github/**
+.gitignore
+README.md
+wrangler.jsonc
+node_modules
+node_modules/**
