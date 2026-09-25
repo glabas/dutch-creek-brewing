@@ -295,10 +295,17 @@ h3 {
     background:
         linear-gradient(
             90deg,
-            #1d1b17 0%,
-            #25221d 48%,
-            #332f29 100%
-        );
+            rgba(24, 23, 19, .98) 0%,
+            rgba(24, 23, 19, .92) 28%,
+            rgba(24, 23, 19, .55) 52%,
+            rgba(24, 23, 19, .08) 72%,
+            rgba(24, 23, 19, 0) 100%
+        ),
+        url("../images/dcb-basement-bar.webp");
+
+    background-size: cover;
+    background-position: center 52%;
+    background-repeat: no-repeat;
 
     color: white;
 }
@@ -312,9 +319,10 @@ h3 {
 
     background:
         linear-gradient(
-            90deg,
-            rgba(15, 14, 12, .25),
-            rgba(15, 14, 12, 0)
+            180deg,
+            rgba(15, 14, 12, .08) 0%,
+            rgba(15, 14, 12, 0) 60%,
+            rgba(15, 14, 12, .18) 100%
         );
 }
 
@@ -1108,6 +1116,18 @@ a.tool-card:hover {
    ========================================================= */
 
 @media (max-width: 600px) {
+
+    .hero {
+        background-position: 58% center;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(18, 17, 14, .28);
+        pointer-events: none;
+    }
 
     .header-inner,
     .hero-inner,
@@ -1961,4 +1981,374 @@ a.tool-card:hover {
         font-size: .78rem;
         line-height: 1.2;
     }
+}
+
+/* =========================================================
+   OUR STORY
+   ========================================================= */
+
+.story-page {
+    background: var(--cream);
+}
+
+
+/* ---------------------------------------------------------
+   Story Hero
+   --------------------------------------------------------- */
+
+.story-hero {
+    padding: 3rem 2rem 3.25rem;
+
+    background:
+        linear-gradient(
+            90deg,
+            #171612 0%,
+            #211f1a 55%,
+            #2a2823 100%
+        );
+
+    color: var(--cream);
+}
+
+.story-hero-inner {
+    width: min(1110px, 100%);
+    margin: 0 auto;
+}
+
+
+/* Section label */
+
+.story-kicker {
+    margin: 0 0 .65rem;
+
+    color: var(--copper);
+
+    font-size: .8rem;
+    font-weight: 900;
+
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+/* Main heading */
+
+.story-hero h1 {
+    max-width: 900px;
+
+    margin: 0;
+
+    color: var(--cream);
+
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: .92;
+
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+}
+
+
+/* Intro */
+
+.story-intro {
+    max-width: 690px;
+
+    margin: 1.25rem 0 0;
+
+    color: rgba(255, 255, 255, .82);
+
+    font-size: 1.05rem;
+    line-height: 1.55;
+}
+
+
+/* ---------------------------------------------------------
+   Story Content
+   --------------------------------------------------------- */
+
+.story-content {
+    padding: 5rem 2rem;
+}
+
+.story-container {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   Chapters
+   --------------------------------------------------------- */
+
+.story-chapter {
+    display: grid;
+
+    grid-template-columns: 110px minmax(0, 1fr);
+
+    gap: 2.5rem;
+
+    padding: 4rem 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.story-chapter:first-child {
+    padding-top: 0;
+}
+
+.story-number {
+    color: var(--copper);
+
+    font-size: 3.75rem;
+    font-weight: 900;
+    line-height: .85;
+
+    letter-spacing: -.06em;
+}
+
+.story-copy {
+    max-width: 720px;
+}
+
+.story-copy .eyebrow {
+    margin: 0 0 .65rem;
+
+    color: var(--copper);
+
+    font-size: .75rem;
+    font-weight: 800;
+
+    letter-spacing: .14em;
+}
+
+.story-copy h2 {
+    margin: 0 0 1.5rem;
+
+    color: var(--ink);
+
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: .95;
+
+    letter-spacing: -.035em;
+    text-transform: uppercase;
+}
+
+.story-copy p {
+    margin: 0 0 1.15rem;
+
+    color: var(--text);
+
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.story-copy strong {
+    color: var(--ink);
+}
+
+.story-emphasis {
+    margin: 1.75rem 0 !important;
+
+    color: var(--ink) !important;
+
+    font-size: 1.25rem !important;
+    font-weight: 700;
+
+    line-height: 1.45 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Pull Quote
+   --------------------------------------------------------- */
+
+.story-quote {
+    position: relative;
+
+    margin: 1rem 0 1rem 110px;
+    padding: 2.75rem 3rem;
+
+    overflow: hidden;
+
+    background: var(--ink);
+}
+
+.story-quote-mark {
+    position: absolute;
+
+    top: -.75rem;
+    left: 1.25rem;
+
+    color: var(--copper);
+
+    font-family: Georgia, serif;
+    font-size: 8rem;
+    line-height: 1;
+
+    opacity: .45;
+}
+
+.story-quote blockquote {
+    position: relative;
+
+    max-width: 700px;
+
+    margin: 0;
+
+    color: var(--cream);
+
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+
+/* ---------------------------------------------------------
+   Brew Day Feature
+   --------------------------------------------------------- */
+
+.story-chapter-feature {
+    margin-top: 3rem;
+}
+
+
+/* ---------------------------------------------------------
+   Lesson Card
+   --------------------------------------------------------- */
+
+.story-lesson {
+    display: grid;
+
+    grid-template-columns: 150px 1fr;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    margin: 1rem 0 1rem 110px;
+    padding: 1.5rem 2rem;
+
+    background: var(--copper);
+    color: var(--ink);
+}
+
+.story-lesson-label {
+    font-size: .72rem;
+    font-weight: 900;
+
+    letter-spacing: .12em;
+}
+
+.story-lesson-text {
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 900;
+    line-height: 1.05;
+
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   Final Chapter
+   --------------------------------------------------------- */
+
+.story-final {
+    border-bottom: 0;
+}
+
+
+/* ---------------------------------------------------------
+   Closing Section
+   --------------------------------------------------------- */
+
+.story-closing {
+    padding: 5rem 2rem;
+
+    background: #e7dfd1;
+}
+
+.story-closing-inner {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.story-closing .eyebrow {
+    margin-bottom: .75rem;
+
+    color: var(--copper);
+
+    font-size: .75rem;
+    font-weight: 900;
+
+    letter-spacing: .16em;
+}
+
+.story-closing h2 {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: .88;
+
+    letter-spacing: -.045em;
+    text-transform: uppercase;
+}
+
+.story-closing p {
+    margin: 1.5rem 0 2rem;
+
+    color: var(--muted);
+
+    font-size: 1rem;
+}
+
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    .story-hero {
+        padding: 3.5rem 1.25rem 3rem;
+    }
+
+    .story-content {
+        padding: 3rem 1.25rem;
+    }
+
+    .story-chapter {
+        grid-template-columns: 1fr;
+
+        gap: 1.25rem;
+
+        padding: 3rem 0;
+    }
+
+    .story-number {
+        font-size: 2.5rem;
+    }
+
+    .story-quote {
+        margin: 1rem 0;
+        padding: 2.5rem 1.5rem;
+    }
+
+    .story-lesson {
+        grid-template-columns: 1fr;
+
+        gap: .5rem;
+
+        margin: 1rem 0;
+        padding: 1.5rem;
+    }
+
+    .story-closing {
+        padding: 4rem 1.25rem;
+    }
+
 }
